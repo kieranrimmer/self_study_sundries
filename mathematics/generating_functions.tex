@@ -1,6 +1,7 @@
 \documentclass[12pt, letterpaper, twoside]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 \title{Generating Functions and Linear Recurrences}
 \author{Kieran Rimmer \thanks{just some Jimbo}}
@@ -77,9 +78,16 @@ Then:
 \end{split}
 \end{equation}
 
-Theorem 1.1: $ \text{if } a, b \in N \text{ and } b > a \geq 0 $ , then for any \[ n \geq a \] the \[ nth \] coefficient of \[ \frac{c x^a}{(1-\alpha x)^b} \] is
-\[ \frac{c (n-a+b-1)! \alpha^{n-a}}{(n-a)! \cdot (b-1)!} \] where
-\[  \].  Proof is given in course materials.
+Theorem 1.1:
+\begin{equation} \label{eq6}
+\begin{split}
+&\text{if } a, b \in N \text{ and } b > a \geq 0 \\
+&\text{, then for any } n \geq a \\
+&\text{ the nth coefficient of } \frac{c x^a}{(1-\alpha x)^b} \\
+&\text{ is } \frac{c (n-a+b-1)! \alpha^{n-a}}{(n-a)! \cdot (b-1)!} \\
+\end{split}
+\end{equation}
+Proof is given in course materials.
 
 So:
 \begin{equation} \label{eq6}
@@ -88,15 +96,16 @@ So:
     T_n = & \frac{-c_1 (n-0+1-1)! 1^{n-0}}{(n-0)! \cdot (1-1)!} \\
     + & \frac{2 c_1 (n-0+1-1)! 2^{n-0}}{(n-0)! \cdot (1-1)!} \\
     + & \frac{c_2 (n-0+2-1)! 2^{n-0}}{(n-0)! \cdot (2-1)!} \\
-    = & -c_1 + 2^{n+1} c_1 + 2^n (n+1) c_2
+    = & -c_1 + 2^{n+1} c_1 + 2^n (n+1) c_2 \\
+    = & (2^{n+1} -1) c_1 + 2^n (n+1) c_2 \\
 \end{split}
 \end{equation}
 
 
 This can be proven by induction.  Let the inductive predicate be:
-\[ P(n) ::= \forall n \in N . T_n = -c_1 + 2^{n+1} c_1 + 2^n (n+1) c_2   \]
+\[ P(n) ::= \forall n \in N .\text{ } T_n = (2^{n+1} - 1) c_1 + 2^n (n+1) c_2   \]
 
-Base case \[ n = 0 \]:
+Base case n = 0:
 \begin{equation} \label{eq7}
     \begin{split}
     T_n & = -c_1 + 2 c_1 + 2^0 (0+1) c_2 \\
@@ -106,18 +115,21 @@ Base case \[ n = 0 \]:
 
 Case holds.
 
+\
+
 Inductive step:
 \begin{equation} \label{eq7}
     \begin{split}
     T_{n+1} & = c_1 + 2 \cdot T_{n} + 2^{n+1} c_2 \\
-    & = c_1 + 2 \cdot (-c_1 + 2^{n+1} c_1 + 2^n (n+1) c_2) + 2^{n+1} c_2 \text{ (by the inductive hypothesis)} \\
+    & = c_1 + 2 \cdot ((2^{n+1} -1) c_1 + 2^n (n+1) c_2) + 2^{n+1} c_2 \text{ (by the inductive hypothesis)} \\
     & = c_1 + (2^{n+2} -2) c_1 + 2^{n+1} (n+1) c_2 + 2^{n+1} c_2  \\
     & = (2^{n+2} -1) c_1 + 2^{n+1} (n+2) c_2  \\
     & = (2^{(n+1)+1} -1) c_1 + 2^{n+1} ((n+1)+1) c_2  \\
 \end{split}
 \end{equation}
 
-Case holds.
+Case holds. $ \blacksquare $
+
 
 
 
